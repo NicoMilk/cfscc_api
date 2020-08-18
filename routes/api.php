@@ -39,6 +39,6 @@ Route::middleware('auth:sanctum')->post('/logout', 'UserController@logout');
 Route::middleware('auth:sanctum')->post('/registrations', 'RegistrationController@store');
 
 Route::middleware('auth:sanctum')->post('/events', 'EventController@store');
-Route::patch('/events', 'EventController@updateCounters');
+// Route::patch('/events', 'EventController@updateCounters');
 
 Route::middleware('auth:sanctum')->post('/blogposts', 'BlogpostController@store');
