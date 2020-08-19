@@ -65,7 +65,7 @@ class RegistrationController extends Controller
         $req=Registration::join('events', 'registrations.event_id', '=', 'events.event_id')
         ->join('users', 'registrations.user_id', '=', 'users.user_id')
         ->where('events.event_id', '=', $event)
-        ->select('events.type', 'events.date_start', 'users.lastname', 'users.firstname', 'users.phone', 'users.email')
+        ->select('registrations.reg_id', 'events.type', 'events.date_start', 'users.lastname', 'users.firstname', 'users.phone', 'users.email')
         ->get();
         return $req;
     }
