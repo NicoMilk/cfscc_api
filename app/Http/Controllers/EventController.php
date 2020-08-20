@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Registration;
 
 class EventController extends Controller
 {
@@ -78,7 +79,7 @@ class EventController extends Controller
             'date_end' => ['date', 'nullable'],
             'price' => ['numeric', 'nullable'], // /!\ MAKE price FLOAT !!!
             'slots_left' => ['integer', 'nullable'],
-            'registered' => ['integer', 'nullable'],
+            // 'registered' => ['integer', 'nullable'],
         ]);
 
         if($event->update([
@@ -88,7 +89,7 @@ class EventController extends Controller
                 'date_end' => $request->date_end,
                 'price' => $request->price,
                 'slots_left' => $request->slots_left,
-                'registered' => $request->registered,
+                // 'registered' => $request->registered,
             ]))
         {
             return response()->json([
@@ -97,23 +98,23 @@ class EventController extends Controller
         }
     }
 
-    public function updateCounters(/*Request $request, Event $event*/)
-    {
-        // $request->validate([
-        //     'slots_left' => ['integer', 'nullable'],
-        //     'registered' => ['integer', 'nullable'],
+    // public function updateCounters(Request $request)
+    // {
+        // $updRegistered=Registration::select('*')
+        //     ->where('event_id', '=', $event_id)
+        //     ->count();dd($updRegistered);
+        // Event::update([
+            // if($id->update([
+            //     'registered' => $updRegistered
+            // ]))
         // ]);
 
-        /*if($event->*/update([
-                'slots_left' => 'slots_left'-1,
-                'registered' => 'registered'+1,
-            ]);
-        {
-            return response()->json([
-                'success' => 'Compteurs modifiés avec succès'
-            ], 200);
-        }
-    }
+            // {       
+                // return response()->json([
+                //     'success' => 'Compteurs modifiés avec succès'
+                //     ], 200);
+            // }
+    // }
 
     /**
      * Remove the specified resource from storage.

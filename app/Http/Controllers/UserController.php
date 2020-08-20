@@ -44,6 +44,7 @@ class UserController extends Controller
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
             ]))
+
         {
             return response()->json([
                 'success' => 'Nouvel utilisateur créé avec succès'
@@ -74,19 +75,19 @@ class UserController extends Controller
         $request->validate([
             'firstname' => ['required', 'string'],  // TODO reg exp ?
             'lastname' => ['required', 'string'],
-            'email' => ['required', 'string'],
-            // 'phone' => ['required', 'string'],
-            'phone' => ['required', 'regex:/^[0-9]{10}/'],  // alt regex:/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/ complex french phone
-            'password' => ['string', 'min:6'],
-            'password_confirmation' => [],
+            // 'email' => ['required', 'string'],
+            'phone' => ['required', 'regex:/^[0-9]{10}/'],
+            // 'phone' => ['required', 'regex:/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/'],  // alt regex:/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/ complex french phone
+            // 'password' => ['string', 'min:6'],
+            // 'password_confirmation' => [],
         ]);
             
         if($user->update([
                 'firstname' => $request->firstname,
                 'lastname' => $request->lastname,
-                'email' => $request->email,
+                // 'email' => $request->email,
                 'phone' => $request->phone,
-                'password' => Hash::make($request->password),
+                // 'password' => Hash::make($request->password),
             ]))
         {
             return response()->json([

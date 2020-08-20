@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\User;   //TODO a virer si fct login deplacee
-
+// use App\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->post('/logout', 'UserController@logout');
 Route::middleware('auth:sanctum')->post('/registrations', 'RegistrationController@store');
 
 Route::middleware('auth:sanctum')->post('/events', 'EventController@store');
-// Route::patch('/events', 'EventController@updateCounters');
+Route::middleware('auth:sanctum')->patch('/events', 'EventController@update');  // A VIRER SI UPDATE KO
+Route::patch('/registrations', 'EventController@updateCounters');
 
 Route::middleware('auth:sanctum')->post('/blogposts', 'BlogpostController@store');
