@@ -113,16 +113,16 @@ class RegistrationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Registration $registration)
+    public function destroy(Registration $registration)
     {
         if($registration->delete());
 
         {
             $updRegistered=Registration::select('*')
-            ->where('event_id', '=', $request->event_id)
+            ->where('event_id', '=', $registration->event_id)
             ->count();
             
-            Event::where('events.event_id', $request->event_id)
+            Event::where('events.event_id', $registration->event_id)
             ->update([
                 'registered' => $updRegistered,
             ]);
