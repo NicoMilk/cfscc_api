@@ -43,12 +43,19 @@ class RegistrationController extends Controller
                 ->count();
 
                 Event::where('events.event_id', $request->event_id)
-            ->update([
-                'registered' => $updRegistered,
-                // 'slots_left' => ('events.slots', '-', $updRegistered)
-            ]);
+                ->update([
+                    'registered' => $updRegistered,
+                ]);
 
-            return response()->json([
+                Event::where('events.event_id', $request->event_id)
+                ->decrement('slots_left', 1);
+
+            // $updSlotsLeft=Event::where('events.event_id', $request->event_id)
+            //     ->update([
+            //         'slots_left' => ('events.slots', '-', $updRegistered)
+            //     ]);
+
+        return response()->json([
                 'success' => 'Nouvelle inscription créée avec succès'
             ], 200);
         }
@@ -126,6 +133,9 @@ class RegistrationController extends Controller
             ->update([
                 'registered' => $updRegistered,
             ]);
+
+            Event::where('events.event_id', $registration->event_id)
+            ->increment('slots_left', 1);
 
             return response()->json([
                 'success' => 'Inscription supprimée avec succès'

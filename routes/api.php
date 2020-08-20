@@ -40,6 +40,6 @@ Route::middleware('auth:sanctum')->post('/registrations', 'RegistrationControlle
 
 Route::middleware('auth:sanctum')->post('/events', 'EventController@store');
 Route::middleware('auth:sanctum')->patch('/events', 'EventController@update');  // A VIRER SI UPDATE KO
-Route::patch('/registrations', 'EventController@updateCounters');
+// Route::patch('/registrations', 'EventController@updateCounters');
 
 Route::middleware('auth:sanctum')->post('/blogposts', 'BlogpostController@store');

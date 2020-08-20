@@ -44,7 +44,7 @@ class EventController extends Controller
                 'date_end' => $request->date_end,
                 'price' => $request->price,
                 'slots' => $request->slots,
-                'slots_left' => $request->slots_left,
+                'slots_left' => $request->slots,
                 'registered' => $request->registered,
             ]))
         {
@@ -102,24 +102,6 @@ class EventController extends Controller
         }
     }
 
-    // public function updateCounters(Request $request)
-    // {
-        // $updRegistered=Registration::select('*')
-        //     ->where('event_id', '=', $event_id)
-        //     ->count();dd($updRegistered);
-        // Event::update([
-            // if($id->update([
-            //     'registered' => $updRegistered
-            // ]))
-        // ]);
-
-            // {       
-                // return response()->json([
-                //     'success' => 'Compteurs modifiés avec succès'
-                //     ], 200);
-            // }
-    // }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -128,6 +110,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        Registration::where('event_id', $event->event_id)  // deletes registrations of the deleted event in the registrations table
+        ->delete();
+     
         $event->delete();
         return response()->json([
             'success' => 'Evènement supprimé avec succès'
