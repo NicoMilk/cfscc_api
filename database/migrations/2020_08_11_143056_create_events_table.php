@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
             $table->date('date_start');
             $table->date('date_end');
             $table->smallInteger('price')->nullable();
+            $table->unsignedTinyInteger('slots')->nullable();
             $table->unsignedTinyInteger('slots_left')->nullable();
             $table->unsignedTinyInteger('registered')->default('0')->nullable();
             $table->timestamps();

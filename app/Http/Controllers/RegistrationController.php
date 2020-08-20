@@ -50,7 +50,8 @@ class RegistrationController extends Controller
                 // Event::updateCounters($request->event_id, $updRegistered);
             Event::where('events.event_id', $request->event_id)
             ->update([
-                'registered' => $updRegistered
+                'registered' => $updRegistered,
+                // 'slots_left' => ('events.slots', '-', $updRegistered)
             ]);
             
 

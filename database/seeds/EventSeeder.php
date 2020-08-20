@@ -17,6 +17,7 @@ class EventSeeder extends Seeder
             'date_start'=>'2020-09-05',
             'date_end'=>'2020-09-06',
             'price'=>'49',
+            'slots'=>'10',
         ]);
 
         DB::table('events')->insert
@@ -33,7 +34,7 @@ class EventSeeder extends Seeder
             'description'=>'Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.',
             'date_start'=>'2020-11-14',
             'date_end'=>'2020-11-15',
-            'slots_left'=>'5',
+            'slots'=>'15',
         ]);
     }
 }
