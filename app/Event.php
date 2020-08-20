@@ -16,9 +16,9 @@ class Event extends Model
     ];
     protected $primaryKey = 'event_id';    //custom primaryKey
 
-    public function getSlotsAttribute($value)
-    {
-        return ($value - 'events.registered');
-    }
+    // public function getSlotsAttribute($value)
+    // {
+    //     return ($value - 'events.registered');
+    // }
 
 }

@@ -38,24 +38,16 @@ class RegistrationController extends Controller
             'user_id' => $request->user_id,
             ]))
         {
-            //PB CORS
             $updRegistered=Registration::select('*')
                 ->where('event_id', '=', $request->event_id)
                 ->count();
-                // return response()->json([
-                //     'success' => $updRegistered
-                // ], 200);
-    
-                // (new Event)->update(['registered' => $updRegistered]);
-                // Event::updateCounters($request->event_id, $updRegistered);
-            Event::where('events.event_id', $request->event_id)
+
+                Event::where('events.event_id', $request->event_id)
             ->update([
                 'registered' => $updRegistered,
                 // 'slots_left' => ('events.slots', '-', $updRegistered)
             ]);
-            
 
-        
             return response()->json([
                 'success' => 'Nouvelle inscription créée avec succès'
             ], 200);
@@ -98,16 +90,13 @@ class RegistrationController extends Controller
             'user_id' => $request->user_id,
             ]))
 
-        // {    // PB CORS
-        //     $updRegistered=Registration::select('*')
-        //         ->where('event_id', '=', $registration->event_id)
-        //         ->count();dd($updRegistered);
-        //     Event::update([
-        //         'registered' => "$updRegistered"
-        //     ]);
-        // }
-
         {
+            Event::where('events.event_id', $request->event_id)
+            ->update([
+                'registered' => $updRegistered,
+                // 'slots_left' => ('events.slots', '-', $updRegistered)
+            ]);
+
             return response()->json([
                 'success' => 'Inscription modifiée avec succès'
             ], 200);
