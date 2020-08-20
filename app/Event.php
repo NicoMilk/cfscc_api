@@ -12,8 +12,13 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'description', 'date_start', 'date_end', 'price', 'slots_left', 'registered'
+        'type', 'description', 'date_start', 'date_end', 'price', 'slots', 'slots_left', 'registered'
     ];
     protected $primaryKey = 'event_id';    //custom primaryKey
+
+    public function getSlotsAttribute($value)
+    {
+        return ($value - 'events.registered');
+    }
 
 }

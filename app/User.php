@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function setPhoneAttribute($phone)
     {
-        $this->attributes['phone'] = preg_replace('~.{2}(?!$)~', '$0 ', $phone);
+        $this->attributes['phone'] = preg_replace('~.{2}(?!$)~', '$0 ', $phone);    // displays phone# XX XX XX XX XX
     }
 
     /**
