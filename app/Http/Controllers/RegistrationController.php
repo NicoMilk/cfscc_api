@@ -91,6 +91,10 @@ class RegistrationController extends Controller
             ]))
 
         {
+            $updRegistered=Registration::select('*')
+            ->where('event_id', '=', $request->event_id)
+            ->count();
+            
             Event::where('events.event_id', $request->event_id)
             ->update([
                 'registered' => $updRegistered,
@@ -109,12 +113,25 @@ class RegistrationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Registration $registration)
+    public function destroy(Request $request, Registration $registration)
     {
-        $registration->delete();
-        return response()->json([
-            'success' => 'Inscription supprimée avec succès'
-        ], 200);
-        // return redirect()->route(ROUTE.TO.REGISTRATIONS.INDEX)->with('success', "XXX has been deleted");    // TODO
+        if($registration->delete());
+
+        {
+            $updRegistered=Registration::select('*')
+            ->where('event_id', '=', $request->event_id)
+            ->count();
+            
+            Event::where('events.event_id', $request->event_id)
+            ->update([
+                'registered' => $updRegistered,
+            ]);
+
+            return response()->json([
+                'success' => 'Inscription supprimée avec succès'
+            ], 200);
+            // return redirect()->route(ROUTE.TO.REGISTRATIONS.INDEX)->with('success', "XXX has been deleted");    // TODO
+        }
+
     }
 }

@@ -32,7 +32,8 @@ class EventController extends Controller
             'date_start' => ['required', 'date'],
             'date_end' => ['required', 'date'],
             'price' => ['required', 'numeric'], // /!\ MAKE price FLOAT !!!
-            'slots_left' => ['required', 'integer'],
+            'slots' => ['required', 'integer'],
+            'slots_left' => ['integer'],
             'registered' => ['integer', 'nullable'],
         ]);
 
@@ -42,6 +43,7 @@ class EventController extends Controller
                 'date_start' => $request->date_start,
                 'date_end' => $request->date_end,
                 'price' => $request->price,
+                'slots' => $request->slots,
                 'slots_left' => $request->slots_left,
                 'registered' => $request->registered,
             ]))
@@ -78,7 +80,8 @@ class EventController extends Controller
             'date_start' => ['date', 'nullable'],
             'date_end' => ['date', 'nullable'],
             'price' => ['numeric', 'nullable'], // /!\ MAKE price FLOAT !!!
-            'slots_left' => ['integer', 'nullable'],
+            'slots' => ['integer', 'nullable'],
+            // 'slots_left' => ['integer', 'nullable'],
             // 'registered' => ['integer', 'nullable'],
         ]);
 
@@ -88,7 +91,8 @@ class EventController extends Controller
                 'date_start' => $request->date_start,
                 'date_end' => $request->date_end,
                 'price' => $request->price,
-                'slots_left' => $request->slots_left,
+                'slots' => $request->slots,
+                // 'slots_left' => $request->slots_left,
                 // 'registered' => $request->registered,
             ]))
         {
